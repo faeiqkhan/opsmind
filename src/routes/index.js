@@ -7,5 +7,6 @@ const router = express.Router();
 router.use('/auth', authRoutes);
 router.use('/audit', auditRoutes);
 router.use('/', userRoutes);
+router.use('/logs', auditRoutes);
 
 module.exports = router;

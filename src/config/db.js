@@ -6,4 +6,7 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
 });
+
+console.log('DB password:', typeof process.env.DB_PASSWORD, process.env.DB_PASSWORD);
+
 module.exports = pool; 
