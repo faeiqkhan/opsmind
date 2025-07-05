@@ -70,6 +70,19 @@ async function ensureDatabaseAndAdmin() {
   `);
   console.log('Table audit_logs ensured.');
 
+  // Create files table if not exists
+  await client.query(`
+    CREATE TABLE IF NOT EXISTS files (
+      id SERIAL PRIMARY KEY,
+      filename TEXT,
+      size BIGINT,
+      user_id TEXT,
+      access TEXT,
+      uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+  console.log('Table files ensured.');
+
   // Add more table checks/creations here as needed
 
   await client.end();

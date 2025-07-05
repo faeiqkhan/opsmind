@@ -37,16 +37,12 @@ const registerUser = async (req, res) => {
         if (existingUser.rows.length > 0) {
             return res.status(400).json({ message: "User already exists" });
         }
-        const pendingUser = await pool.query("SELECT * FROM unapproved_users WHERE email = $1", [email]);
-        if (pendingUser.rows.length > 0) {
-            return res.status(400).json({ message: "User already registered, awaiting KYC approval" });
-        }
         const hashedPassword = await bcrypt.hash(password, 10);
         await pool.query(
-            "INSERT INTO unapproved_users (email, password, role) VALUES ($1, $2, $3)",
+            "INSERT INTO users (email, password, role) VALUES ($1, $2, $3)",
             [email, hashedPassword, role]
         );
-        res.status(201).json({ message: "User registered. KYC pending approval." });
+        res.status(201).json({ message: "User registered successfully." });
     } catch (error) {
         console.error("❌ Error in registration:", error);
         res.status(500).json({ message: "Server error" });

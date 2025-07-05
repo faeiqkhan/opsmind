@@ -5,6 +5,7 @@ const routes = require('./routes');
 const app = express();
 const auditLogger = require('./middlewares/auditLogger');
 const ensureDatabaseAndAdmin = require('./config/initDb');
+const mainRouter = require('./routes/index');
 
 // Ensure DB and admin user before starting the rest of the app
 ensureDatabaseAndAdmin()
@@ -25,5 +26,6 @@ app.get('/ping', (req, res) => res.send('pong'));
 app.use(express.json());
 app.use(auditLogger); // Apply audit logging before routes
 app.use('/api', routes);
+//p.use('/api', mainRouter);
 
 module.exports = app;
