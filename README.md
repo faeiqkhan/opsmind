@@ -47,7 +47,7 @@ See `/src/modules` for feature logic and `/src/jobs` for background workers.
 
 ## Status
 - [x] Folder setup
-- [x] Audit logger flow
-- [x] Redis queue integration
-- [x] FileOps base logic
+- [X] Audit logger flow
+- [X] Redis queue integration
+- [X] FileOps base logic
 - [ ] AI modules
